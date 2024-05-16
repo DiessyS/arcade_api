@@ -2,6 +2,7 @@ import 'package:arcade_repository/arcade_repository.dart';
 import 'package:get_it/get_it.dart';
 
 import '../service/auth_service.dart';
+import '../service/curse_words/curse_words_service.dart';
 import '../service/database/database_service.dart';
 import '../service/event_multi_service.dart';
 import '../service/event_service.dart';
@@ -49,5 +50,9 @@ void registerServices() {
 
   service.registerLazySingleton<AuthService>(
     () => AuthService(),
+  );
+
+  service.registerLazySingleton<CurseWordService>(
+    () => CurseWordService(),
   );
 }

@@ -18,12 +18,12 @@ class GenericAPI<T> {
     dataTypeMarshall = DataTypeMarshall<T>();
   }
 
-  Map<String, dynamic> get(Request request, String id) {
-    return {'data': service.getById(int.parse(id))};
+  Response get(Request request, String id) {
+    return Response.ok(service.getById(int.parse(id)));
   }
 
-  Map<String, dynamic> getAll(Request request) {
-    return {'data': service.getAll()};
+  Response getAll(Request request) {
+    return Response.ok(service.getAll());
   }
 
   Future<Response> save(Request request) async {

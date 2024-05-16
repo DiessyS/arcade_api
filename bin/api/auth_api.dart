@@ -18,7 +18,7 @@ class AuthAPI {
       final token = AuthService().login(identifier, password);
       return Response.ok(token);
     } catch (e) {
-      return Response.forbidden('Usuário ou senha inválidos');
+      return Response.forbidden(e.toString());
     }
   }
 }

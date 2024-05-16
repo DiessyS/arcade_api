@@ -11,13 +11,16 @@ class EventMultiApi extends GenericAPI<EventMultiMarker> {
 
   @override
   Future<Response> save(Request request) async {
-    final parameters = await request.body.asJson;
-
-    EventMultiMarker event = EventMultiMarker.fromJson(parameters);
     String token = request.headers['Authorization'] ?? '';
     int userId = AuthService().extractUserIdFromToken(token);
-
     User user = service<UserService>().getById(userId)!;
+
+    if (!user.manager) {
+      return Response.forbidden('Você não tem permissão para acessar este recurso');
+    }
+
+    final parameters = await request.body.asJson;
+    EventMultiMarker event = EventMultiMarker.fromJson(parameters);
 
     event.createdBy.target = user;
 
@@ -28,5 +31,17 @@ class EventMultiApi extends GenericAPI<EventMultiMarker> {
     }
 
     return Response.ok('Cadastrado com sucesso');
+  }
+
+  @override
+  Future<Response> delete(Request request, String id) async {
+    int idPayload = service<AuthService>().extractUserIdFromRequest(request);
+    User user = service<UserService>().getById(idPayload)!;
+
+    if (!user.manager) {
+      return Response.forbidden('Você não tem permissão para acessar este recurso');
+    }
+
+    return super.delete(request, id);
   }
 }

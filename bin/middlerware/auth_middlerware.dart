@@ -29,5 +29,3 @@ Middleware authMiddleware() => (Handler innerHandler) {
         return response;
       };
     };
-
-_
