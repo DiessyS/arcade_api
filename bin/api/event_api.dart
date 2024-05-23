@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:arcade_repository/models/event.dart';
 import 'package:arcade_repository/models/user.dart';
 import 'package:shelf_plus/shelf_plus.dart';

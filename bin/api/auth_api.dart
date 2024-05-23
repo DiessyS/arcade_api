@@ -15,8 +15,7 @@ class AuthAPI {
     final password = parameters['password']!;
 
     try {
-      final token = AuthService().login(identifier, password);
-      return Response.ok(token);
+      return Response.ok(AuthService().login(identifier, password));
     } catch (e) {
       return Response.forbidden(e.toString());
     }

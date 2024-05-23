@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:arcade_repository/models/user.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:shelf_plus/shelf_plus.dart';
@@ -6,28 +8,23 @@ import '../boostrap/service_register.dart';
 import 'user_service.dart';
 
 class AuthService {
-  login(String identifier, String password) {
+  String login(String identifier, String password) {
     User user = service<UserService>().getAll().firstWhere((element) => element.identifier == identifier);
 
     if (user.banned) {
-      return Response.forbidden(
+      throw Exception(
           'O acesso do usuario ${user.identifier} foi bloqueado, por favor entre em contato com o administrador');
     }
 
-    //Todo: checagem pelo ldap
     if (false) {
+      //Todo: checagem pelo ldap
       throw Exception("Usuário ou senha inválidos");
     }
 
-    JWT jwt = JWT(
-      {
-        'id': user.id,
-        'identifier': user.identifier,
-        'name': user.name,
-      },
-    );
+    JWT jwt = JWT({'id': user.id});
+    String token = jwt.sign(SecretKey(_getServerSecretKey()));
 
-    return jwt.sign(SecretKey(_getServerSecretKey()));
+    return json.encode({'token': token, 'user': user.toJson()});
   }
 
   isTokenValid(String token) {

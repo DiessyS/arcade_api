@@ -8,6 +8,7 @@ import 'generic/generic_api.dart';
 class UserApi extends GenericAPI<User> {
   UserApi({required super.router}) : super(path: 'user', service: service<UserService>());
 
+  /*
   @override
   Response get(Request request, String id) {
     User? user = service<UserService>().getById(int.parse(id));
@@ -25,7 +26,9 @@ class UserApi extends GenericAPI<User> {
 
     return super.get(request, id);
   }
+   */
 
+  /*
   @override
   Response getAll(Request request) {
     int idPayload = service<AuthService>().extractUserIdFromRequest(request);
@@ -61,4 +64,19 @@ class UserApi extends GenericAPI<User> {
 
     return super.delete(request, id);
   }
+
+   */
+
+  Middleware onlyManagerMiddleware() => (Handler innerHandler) {
+        return (Request request) async {
+          int idPayload = service<AuthService>().extractUserIdFromRequest(request);
+          User user = service<UserService>().getById(idPayload)!;
+
+          if (!user.manager) {
+            return Response.forbidden('Você não tem permissão para acessar este recurso');
+          }
+
+          return innerHandler(request);
+        };
+      };
 }
