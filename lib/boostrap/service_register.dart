@@ -1,6 +1,10 @@
-import 'package:arcade_repository/arcade_repository.dart';
 import 'package:get_it/get_it.dart';
 
+import '../models/event.dart';
+import '../models/event_multi_marker.dart';
+import '../models/marker.dart';
+import '../models/user.dart';
+import '../repository/core/repository.dart';
 import '../service/auth_service.dart';
 import '../service/curse_words/curse_words_service.dart';
 import '../service/database/database_service.dart';

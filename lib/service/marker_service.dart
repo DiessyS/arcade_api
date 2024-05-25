@@ -1,4 +1,4 @@
-import 'package:arcade_repository/arcade_repository.dart';
+import '../models/marker.dart';
 import 'generic/generic_service.dart';
 
 class MarkerService extends GenericService<Marker> {

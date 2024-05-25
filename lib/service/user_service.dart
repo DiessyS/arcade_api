@@ -1,4 +1,4 @@
-import 'package:arcade_repository/arcade_repository.dart';
+import '../models/user.dart';
 import 'generic/generic_service.dart';
 
 class UserService extends GenericService<User> {

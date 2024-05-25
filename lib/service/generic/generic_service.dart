@@ -1,4 +1,4 @@
-import 'package:arcade_repository/arcade_repository.dart';
+import '../../repository/core/repository.dart';
 
 class GenericService<T> {
   final Repository<T> repository;

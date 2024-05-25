@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:arcade_repository/models/user.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../boostrap/service_register.dart';
+import '../models/user.dart';
 import 'user_service.dart';
 
 class AuthService {

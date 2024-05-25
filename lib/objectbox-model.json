@@ -1,0 +1,215 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:7697675042053646321",
+      "lastPropertyId": "7:842648696052606232",
+      "name": "Event",
+      "properties": [
+        {
+          "id": "1:83945569704173195",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5196763668511089513",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:7148283959523413703",
+          "name": "na2me",
+          "type": 9
+        },
+        {
+          "id": "4:266882696538324555",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "5:4919128364651106689",
+          "name": "eventType",
+          "type": 9
+        },
+        {
+          "id": "6:2032847534188824800",
+          "name": "markerId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:4991144915407955678",
+          "relationTarget": "Marker"
+        },
+        {
+          "id": "7:842648696052606232",
+          "name": "createdById",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:2137179759738993058",
+          "relationTarget": "User"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:7497615730856175944",
+      "lastPropertyId": "5:8070093292411012942",
+      "name": "EventMultiMarker",
+      "properties": [
+        {
+          "id": "1:2420320479281845968",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6571940301061211480",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:993218906369817269",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "4:35436463125090714",
+          "name": "eventType",
+          "type": 9
+        },
+        {
+          "id": "5:8070093292411012942",
+          "name": "createdById",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:2042892050448478359",
+          "relationTarget": "User"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:5915493698305242877",
+          "name": "markers",
+          "targetId": "3:7343636956707892605"
+        }
+      ]
+    },
+    {
+      "id": "3:7343636956707892605",
+      "lastPropertyId": "4:9183665156354868884",
+      "name": "Marker",
+      "properties": [
+        {
+          "id": "1:5160798096413292556",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8736852220989808913",
+          "name": "latitude",
+          "type": 8
+        },
+        {
+          "id": "3:4763010965487039086",
+          "name": "longitude",
+          "type": 8
+        },
+        {
+          "id": "4:9183665156354868884",
+          "name": "altitude",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:7202801162197773216",
+      "lastPropertyId": "4:2427939106238268053",
+      "name": "Teste",
+      "properties": [
+        {
+          "id": "1:8671123018950221568",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6690835599375000782",
+          "name": "latitude",
+          "type": 8
+        },
+        {
+          "id": "3:6324549235083046754",
+          "name": "longitude",
+          "type": 8
+        },
+        {
+          "id": "4:2427939106238268053",
+          "name": "altitude",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:5101694731649721369",
+      "lastPropertyId": "7:2672268482579980057",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:2873559126810583380",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7631488255996569401",
+          "name": "identifier",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "4:2646134879686239601"
+        },
+        {
+          "id": "3:6562660316890533853",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:4195957475898934943",
+          "name": "banned",
+          "type": 1
+        },
+        {
+          "id": "5:224551680100278764",
+          "name": "manager",
+          "type": 1
+        },
+        {
+          "id": "6:6462495771890028528",
+          "name": "crudOnTempEvents",
+          "type": 1
+        },
+        {
+          "id": "7:2672268482579980057",
+          "name": "crudOnPermEvents",
+          "type": 1
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "5:5101694731649721369",
+  "lastIndexId": "4:2646134879686239601",
+  "lastRelationId": "1:5915493698305242877",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

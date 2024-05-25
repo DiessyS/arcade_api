@@ -1,4 +1,4 @@
-import 'package:arcade_repository/arcade_repository.dart';
+import '../../repository/core/database.dart';
 
 class DatabaseService {
   late Database database;

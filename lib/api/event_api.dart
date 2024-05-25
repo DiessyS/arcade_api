@@ -1,7 +1,7 @@
-import 'package:arcade_repository/models/event.dart';
-import 'package:arcade_repository/models/user.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 import '../boostrap/service_register.dart';
+import '../models/event.dart';
+import '../models/user.dart';
 import '../service/auth_service.dart';
 import '../service/curse_words/curse_words_service.dart';
 import '../service/event_service.dart';
@@ -25,12 +25,14 @@ class EventApi extends GenericAPI<Event> {
           'O acesso do usuario ${user.identifier} foi bloqueado, por favor entre em contato com o administrador');
     }
 
+    /*
     if (service<CurseWordService>().containsCurseWord(event.name) ||
         service<CurseWordService>().containsCurseWord(event.description)) {
       user.banned = true;
       service<UserService>().update(user);
       return Response.badRequest(body: 'Não foi possivel cadastrar o evento');
     }
+    */
 
     event.createdBy.target = user;
 

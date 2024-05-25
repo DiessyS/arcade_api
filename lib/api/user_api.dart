@@ -1,6 +1,6 @@
-import 'package:arcade_repository/models/user.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 import '../boostrap/service_register.dart';
+import '../models/user.dart';
 import '../service/auth_service.dart';
 import '../service/user_service.dart';
 import 'generic/generic_api.dart';

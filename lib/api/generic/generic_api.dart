@@ -1,6 +1,6 @@
-import 'package:arcade_repository/marshall/data_type_marshall.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
+import '../../marshall/data_type_marshall.dart';
 import '../../service/generic/generic_service.dart';
 
 class GenericAPI<T> {
