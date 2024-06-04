@@ -26,8 +26,8 @@ class Marker {
   }
 
   Marker.fromJson(Map<String, dynamic> json) {
-    latitude = json['latitude'];
-    longitude = json['longitude'];
-    altitude = json['altitude'];
+    latitude = json['latitude'].toDouble();
+    longitude = json['longitude'].toDouble();
+    altitude = json['altitude'].toDouble();
   }
 }

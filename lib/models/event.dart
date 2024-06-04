@@ -10,12 +10,14 @@ class Event {
   int id = 0;
 
   String name = "";
-  String na2me = "";
   String description = '';
   String eventType = EventType.place.toString();
 
   final marker = ToOne<Marker>();
   final createdBy = ToOne<User>();
+
+  @Property(type: PropertyType.date)
+  DateTime createdAt = DateTime.now();
 
   Event();
 
@@ -32,6 +34,7 @@ class Event {
       'eventType': eventType,
       'marker': marker.target?.toJson(),
       'createdBy': createdBy.target?.toJson(),
+      'createdAt': createdAt.toIso8601String(),
     };
   }
 

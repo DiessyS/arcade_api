@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:arcade_api/service/ldap_service.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
@@ -8,17 +9,24 @@ import '../models/user.dart';
 import 'user_service.dart';
 
 class AuthService {
-  String login(String identifier, String password) {
-    User user = service<UserService>().getAll().firstWhere((element) => element.identifier == identifier);
+  //todo: remover esse método
+  Future<User> criarNovoUsuarioLdap(String identifier) async {
+    User user = await service<LdapService>().getUserFromLdap(identifier);
+    service<UserService>().save(user);
+    return user;
+  }
 
-    if (user.banned) {
-      throw Exception(
-          'O acesso do usuario ${user.identifier} foi bloqueado, por favor entre em contato com o administrador');
+  Future<String> login(String identifier, String password) async {
+    if (!(await service<LdapService>().authenticate(identifier, password))) {
+      throw Exception("Usuário ou senha inválidos");
     }
 
-    if (false) {
-      //Todo: checagem pelo ldap
-      throw Exception("Usuário ou senha inválidos");
+    User? user = service<UserService>().getByIdentifier(identifier);
+
+    user ??= await criarNovoUsuarioLdap(identifier);
+
+    if (user.banned) {
+      throw Exception('O acesso do usuario ${user.identifier} foi bloqueado');
     }
 
     JWT jwt = JWT({'id': user.id});

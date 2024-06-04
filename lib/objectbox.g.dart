@@ -15,126 +15,83 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 
 import 'models/event.dart';
-import 'models/event_multi_marker.dart';
 import 'models/marker.dart';
-import 'models/teste.dart';
 import 'models/user.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 7697675042053646321),
+      id: const obx_int.IdUid(1, 3641625309124856740),
       name: 'Event',
-      lastPropertyId: const obx_int.IdUid(7, 842648696052606232),
+      lastPropertyId: const obx_int.IdUid(8, 7917345948453636044),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 83945569704173195),
+            id: const obx_int.IdUid(1, 17633517628885872),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 5196763668511089513),
+            id: const obx_int.IdUid(2, 2881814261958305759),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 7148283959523413703),
-            name: 'na2me',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 266882696538324555),
+            id: const obx_int.IdUid(4, 7588564157234731435),
             name: 'description',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 4919128364651106689),
+            id: const obx_int.IdUid(5, 3712613966648961507),
             name: 'eventType',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 2032847534188824800),
+            id: const obx_int.IdUid(6, 4936638773886025982),
             name: 'markerId',
             type: 11,
             flags: 520,
-            indexId: const obx_int.IdUid(1, 4991144915407955678),
+            indexId: const obx_int.IdUid(1, 4414900424959485281),
             relationTarget: 'Marker'),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 842648696052606232),
+            id: const obx_int.IdUid(7, 1857614491159167328),
             name: 'createdById',
             type: 11,
             flags: 520,
-            indexId: const obx_int.IdUid(2, 2137179759738993058),
-            relationTarget: 'User')
+            indexId: const obx_int.IdUid(2, 2797459950233595612),
+            relationTarget: 'User'),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 7917345948453636044),
+            name: 'createdAt',
+            type: 10,
+            flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(2, 7497615730856175944),
-      name: 'EventMultiMarker',
-      lastPropertyId: const obx_int.IdUid(5, 8070093292411012942),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 2420320479281845968),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 6571940301061211480),
-            name: 'name',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 993218906369817269),
-            name: 'description',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 35436463125090714),
-            name: 'eventType',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 8070093292411012942),
-            name: 'createdById',
-            type: 11,
-            flags: 520,
-            indexId: const obx_int.IdUid(3, 2042892050448478359),
-            relationTarget: 'User')
-      ],
-      relations: <obx_int.ModelRelation>[
-        obx_int.ModelRelation(
-            id: const obx_int.IdUid(1, 5915493698305242877),
-            name: 'markers',
-            targetId: const obx_int.IdUid(3, 7343636956707892605))
-      ],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 7343636956707892605),
+      id: const obx_int.IdUid(2, 4413450018317746965),
       name: 'Marker',
-      lastPropertyId: const obx_int.IdUid(4, 9183665156354868884),
+      lastPropertyId: const obx_int.IdUid(4, 8532013014470610344),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 5160798096413292556),
+            id: const obx_int.IdUid(1, 3873186835549286795),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 8736852220989808913),
+            id: const obx_int.IdUid(2, 7810051586961322896),
             name: 'latitude',
             type: 8,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 4763010965487039086),
+            id: const obx_int.IdUid(3, 3795493444501182286),
             name: 'longitude',
             type: 8,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 9183665156354868884),
+            id: const obx_int.IdUid(4, 8532013014470610344),
             name: 'altitude',
             type: 8,
             flags: 0)
@@ -142,74 +99,35 @@ final _entities = <obx_int.ModelEntity>[
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(4, 7202801162197773216),
-      name: 'Teste',
-      lastPropertyId: const obx_int.IdUid(4, 2427939106238268053),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 8671123018950221568),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 6690835599375000782),
-            name: 'latitude',
-            type: 8,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 6324549235083046754),
-            name: 'longitude',
-            type: 8,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 2427939106238268053),
-            name: 'altitude',
-            type: 8,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
-  obx_int.ModelEntity(
-      id: const obx_int.IdUid(5, 5101694731649721369),
+      id: const obx_int.IdUid(3, 5245049771408831401),
       name: 'User',
-      lastPropertyId: const obx_int.IdUid(7, 2672268482579980057),
+      lastPropertyId: const obx_int.IdUid(7, 8008839518377418486),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 2873559126810583380),
+            id: const obx_int.IdUid(1, 2556912492356042669),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 7631488255996569401),
+            id: const obx_int.IdUid(2, 1202881106797085830),
             name: 'identifier',
             type: 9,
             flags: 2080,
-            indexId: const obx_int.IdUid(4, 2646134879686239601)),
+            indexId: const obx_int.IdUid(3, 7911329766454026192)),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 6562660316890533853),
+            id: const obx_int.IdUid(3, 8723107177053627186),
             name: 'name',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 4195957475898934943),
+            id: const obx_int.IdUid(4, 5921526977577780009),
             name: 'banned',
             type: 1,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 224551680100278764),
+            id: const obx_int.IdUid(5, 964990750158744153),
             name: 'manager',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 6462495771890028528),
-            name: 'crudOnTempEvents',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 2672268482579980057),
-            name: 'crudOnPermEvents',
             type: 1,
             flags: 0)
       ],
@@ -251,13 +169,17 @@ obx.Store openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(5, 5101694731649721369),
-      lastIndexId: const obx_int.IdUid(4, 2646134879686239601),
-      lastRelationId: const obx_int.IdUid(1, 5915493698305242877),
+      lastEntityId: const obx_int.IdUid(3, 5245049771408831401),
+      lastIndexId: const obx_int.IdUid(3, 7911329766454026192),
+      lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [
+        2477026663232477285,
+        8008839518377418486,
+        679178013217149710
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -274,17 +196,16 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (Event object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
-          final na2meOffset = fbb.writeString(object.na2me);
           final descriptionOffset = fbb.writeString(object.description);
           final eventTypeOffset = fbb.writeString(object.eventType);
-          fbb.startTable(8);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
-          fbb.addOffset(2, na2meOffset);
           fbb.addOffset(3, descriptionOffset);
           fbb.addOffset(4, eventTypeOffset);
           fbb.addInt64(5, object.marker.targetId);
           fbb.addInt64(6, object.createdBy.targetId);
+          fbb.addInt64(7, object.createdAt.millisecondsSinceEpoch);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -296,12 +217,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
             ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
             ..name = const fb.StringReader(asciiOptimization: true)
                 .vTableGet(buffer, rootOffset, 6, '')
-            ..na2me = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 8, '')
             ..description = const fb.StringReader(asciiOptimization: true)
                 .vTableGet(buffer, rootOffset, 10, '')
             ..eventType = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 12, '');
+                .vTableGet(buffer, rootOffset, 12, '')
+            ..createdAt = DateTime.fromMillisecondsSinceEpoch(
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0));
           object.marker.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           object.marker.attach(store);
@@ -310,53 +231,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.createdBy.attach(store);
           return object;
         }),
-    EventMultiMarker: obx_int.EntityDefinition<EventMultiMarker>(
-        model: _entities[1],
-        toOneRelations: (EventMultiMarker object) => [object.createdBy],
-        toManyRelations: (EventMultiMarker object) => {
-              obx_int.RelInfo<EventMultiMarker>.toMany(1, object.id):
-                  object.markers
-            },
-        getId: (EventMultiMarker object) => object.id,
-        setId: (EventMultiMarker object, int id) {
-          object.id = id;
-        },
-        objectToFB: (EventMultiMarker object, fb.Builder fbb) {
-          final nameOffset = fbb.writeString(object.name);
-          final descriptionOffset = fbb.writeString(object.description);
-          final eventTypeOffset = fbb.writeString(object.eventType);
-          fbb.startTable(6);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, nameOffset);
-          fbb.addOffset(2, descriptionOffset);
-          fbb.addOffset(3, eventTypeOffset);
-          fbb.addInt64(4, object.createdBy.targetId);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = EventMultiMarker()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..name = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 6, '')
-            ..description = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 8, '')
-            ..eventType = const fb.StringReader(asciiOptimization: true)
-                .vTableGet(buffer, rootOffset, 10, '');
-          object.createdBy.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
-          object.createdBy.attach(store);
-          obx_int.InternalToManyAccess.setRelInfo<EventMultiMarker>(
-              object.markers,
-              store,
-              obx_int.RelInfo<EventMultiMarker>.toMany(1, object.id));
-          return object;
-        }),
     Marker: obx_int.EntityDefinition<Marker>(
-        model: _entities[2],
+        model: _entities[1],
         toOneRelations: (Marker object) => [],
         toManyRelations: (Marker object) => {},
         getId: (Marker object) => object.id,
@@ -387,40 +263,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    Teste: obx_int.EntityDefinition<Teste>(
-        model: _entities[3],
-        toOneRelations: (Teste object) => [],
-        toManyRelations: (Teste object) => {},
-        getId: (Teste object) => object.id,
-        setId: (Teste object, int id) {
-          object.id = id;
-        },
-        objectToFB: (Teste object, fb.Builder fbb) {
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id);
-          fbb.addFloat64(1, object.latitude);
-          fbb.addFloat64(2, object.longitude);
-          fbb.addFloat64(3, object.altitude);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-
-          final object = Teste()
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..latitude =
-                const fb.Float64Reader().vTableGet(buffer, rootOffset, 6, 0)
-            ..longitude =
-                const fb.Float64Reader().vTableGet(buffer, rootOffset, 8, 0)
-            ..altitude =
-                const fb.Float64Reader().vTableGet(buffer, rootOffset, 10, 0);
-
-          return object;
-        }),
     User: obx_int.EntityDefinition<User>(
-        model: _entities[4],
+        model: _entities[2],
         toOneRelations: (User object) => [],
         toManyRelations: (User object) => {},
         getId: (User object) => object.id,
@@ -436,8 +280,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addOffset(2, nameOffset);
           fbb.addBool(3, object.banned);
           fbb.addBool(4, object.manager);
-          fbb.addBool(5, object.crudOnTempEvents);
-          fbb.addBool(6, object.crudOnPermEvents);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -454,11 +296,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
             ..banned =
                 const fb.BoolReader().vTableGet(buffer, rootOffset, 10, false)
             ..manager =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false)
-            ..crudOnTempEvents =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 14, false)
-            ..crudOnPermEvents =
-                const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false);
+                const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false);
 
           return object;
         })
@@ -476,116 +314,63 @@ class Event_ {
   static final name =
       obx.QueryStringProperty<Event>(_entities[0].properties[1]);
 
-  /// see [Event.na2me]
-  static final na2me =
-      obx.QueryStringProperty<Event>(_entities[0].properties[2]);
-
   /// see [Event.description]
   static final description =
-      obx.QueryStringProperty<Event>(_entities[0].properties[3]);
+      obx.QueryStringProperty<Event>(_entities[0].properties[2]);
 
   /// see [Event.eventType]
   static final eventType =
-      obx.QueryStringProperty<Event>(_entities[0].properties[4]);
+      obx.QueryStringProperty<Event>(_entities[0].properties[3]);
 
   /// see [Event.marker]
   static final marker =
-      obx.QueryRelationToOne<Event, Marker>(_entities[0].properties[5]);
+      obx.QueryRelationToOne<Event, Marker>(_entities[0].properties[4]);
 
   /// see [Event.createdBy]
   static final createdBy =
-      obx.QueryRelationToOne<Event, User>(_entities[0].properties[6]);
-}
+      obx.QueryRelationToOne<Event, User>(_entities[0].properties[5]);
 
-/// [EventMultiMarker] entity fields to define ObjectBox queries.
-class EventMultiMarker_ {
-  /// see [EventMultiMarker.id]
-  static final id =
-      obx.QueryIntegerProperty<EventMultiMarker>(_entities[1].properties[0]);
-
-  /// see [EventMultiMarker.name]
-  static final name =
-      obx.QueryStringProperty<EventMultiMarker>(_entities[1].properties[1]);
-
-  /// see [EventMultiMarker.description]
-  static final description =
-      obx.QueryStringProperty<EventMultiMarker>(_entities[1].properties[2]);
-
-  /// see [EventMultiMarker.eventType]
-  static final eventType =
-      obx.QueryStringProperty<EventMultiMarker>(_entities[1].properties[3]);
-
-  /// see [EventMultiMarker.createdBy]
-  static final createdBy = obx.QueryRelationToOne<EventMultiMarker, User>(
-      _entities[1].properties[4]);
-
-  /// see [EventMultiMarker.markers]
-  static final markers = obx.QueryRelationToMany<EventMultiMarker, Marker>(
-      _entities[1].relations[0]);
+  /// see [Event.createdAt]
+  static final createdAt =
+      obx.QueryDateProperty<Event>(_entities[0].properties[6]);
 }
 
 /// [Marker] entity fields to define ObjectBox queries.
 class Marker_ {
   /// see [Marker.id]
   static final id =
-      obx.QueryIntegerProperty<Marker>(_entities[2].properties[0]);
+      obx.QueryIntegerProperty<Marker>(_entities[1].properties[0]);
 
   /// see [Marker.latitude]
   static final latitude =
-      obx.QueryDoubleProperty<Marker>(_entities[2].properties[1]);
+      obx.QueryDoubleProperty<Marker>(_entities[1].properties[1]);
 
   /// see [Marker.longitude]
   static final longitude =
-      obx.QueryDoubleProperty<Marker>(_entities[2].properties[2]);
+      obx.QueryDoubleProperty<Marker>(_entities[1].properties[2]);
 
   /// see [Marker.altitude]
   static final altitude =
-      obx.QueryDoubleProperty<Marker>(_entities[2].properties[3]);
-}
-
-/// [Teste] entity fields to define ObjectBox queries.
-class Teste_ {
-  /// see [Teste.id]
-  static final id = obx.QueryIntegerProperty<Teste>(_entities[3].properties[0]);
-
-  /// see [Teste.latitude]
-  static final latitude =
-      obx.QueryDoubleProperty<Teste>(_entities[3].properties[1]);
-
-  /// see [Teste.longitude]
-  static final longitude =
-      obx.QueryDoubleProperty<Teste>(_entities[3].properties[2]);
-
-  /// see [Teste.altitude]
-  static final altitude =
-      obx.QueryDoubleProperty<Teste>(_entities[3].properties[3]);
+      obx.QueryDoubleProperty<Marker>(_entities[1].properties[3]);
 }
 
 /// [User] entity fields to define ObjectBox queries.
 class User_ {
   /// see [User.id]
-  static final id = obx.QueryIntegerProperty<User>(_entities[4].properties[0]);
+  static final id = obx.QueryIntegerProperty<User>(_entities[2].properties[0]);
 
   /// see [User.identifier]
   static final identifier =
-      obx.QueryStringProperty<User>(_entities[4].properties[1]);
+      obx.QueryStringProperty<User>(_entities[2].properties[1]);
 
   /// see [User.name]
-  static final name = obx.QueryStringProperty<User>(_entities[4].properties[2]);
+  static final name = obx.QueryStringProperty<User>(_entities[2].properties[2]);
 
   /// see [User.banned]
   static final banned =
-      obx.QueryBooleanProperty<User>(_entities[4].properties[3]);
+      obx.QueryBooleanProperty<User>(_entities[2].properties[3]);
 
   /// see [User.manager]
   static final manager =
-      obx.QueryBooleanProperty<User>(_entities[4].properties[4]);
-
-  /// see [User.crudOnTempEvents]
-  static final crudOnTempEvents =
-      obx.QueryBooleanProperty<User>(_entities[4].properties[5]);
-
-  /// see [User.crudOnPermEvents]
-  static final crudOnPermEvents =
-      obx.QueryBooleanProperty<User>(_entities[4].properties[6]);
+      obx.QueryBooleanProperty<User>(_entities[2].properties[4]);
 }

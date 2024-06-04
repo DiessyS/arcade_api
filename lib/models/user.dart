@@ -11,15 +11,13 @@ class User {
   String name = '';
 
   bool banned = false;
-  bool manager = true;
-  bool crudOnTempEvents = true;
-  bool crudOnPermEvents = true;
+  bool manager = false;
 
   User();
 
   @override
   String toString() {
-    return 'User{id: $id, identifier: $identifier, name: $name, banned: $banned, crudOnTempEvents: $crudOnTempEvents, crudOnPermEvents: $crudOnPermEvents}';
+    return 'User{id: $id, identifier: $identifier, name: $name, banned: $banned}';
   }
 
   toJson() {
@@ -28,8 +26,7 @@ class User {
       'identifier': identifier,
       'name': name,
       'banned': banned,
-      'crudOnTempEvents': crudOnTempEvents,
-      'crudOnPermEvents': crudOnPermEvents,
+      'manager': manager,
     };
   }
 

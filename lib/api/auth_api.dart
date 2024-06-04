@@ -1,3 +1,4 @@
+import 'package:arcade_api/boostrap/service_register.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 import '../service/auth_service.dart';
@@ -15,7 +16,7 @@ class AuthAPI {
     final password = parameters['password']!;
 
     try {
-      return Response.ok(AuthService().login(identifier, password));
+      return Response.ok(await service<AuthService>().login(identifier, password));
     } catch (e) {
       return Response.forbidden(e.toString());
     }

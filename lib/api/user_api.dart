@@ -1,82 +1,77 @@
 import 'package:shelf_plus/shelf_plus.dart';
 import '../boostrap/service_register.dart';
 import '../models/user.dart';
-import '../service/auth_service.dart';
 import '../service/user_service.dart';
-import 'generic/generic_api.dart';
+import 'generic/request_handler.dart';
 
-class UserApi extends GenericAPI<User> {
-  UserApi({required super.router}) : super(path: 'user', service: service<UserService>());
+class UserApi extends RequestHandler<User> {
+  RouterPlus router;
 
-  /*
-  @override
-  Response get(Request request, String id) {
-    User? user = service<UserService>().getById(int.parse(id));
+  UserApi({required this.router}) {
+    router.get('/user', getAll);
+    router.put('/user/<id>', update);
+    router.delete('/user/<id>', delete);
+  }
 
-    if (user == null) {
-      return Response.notFound('registro não encontrado');
-    }
-
-    if (!user.manager) {
-      int idPayload = service<AuthService>().extractUserIdFromRequest(request);
-      if (idPayload != user.id) {
+  getAll(Request request) {
+    try {
+      if (!isUserManager(request)) {
         return Response.forbidden('Você não tem permissão para acessar este recurso');
       }
+      return service<UserService>().getAll();
+    } catch (e) {
+      return Response.internalServerError(body: 'Erro ao buscar usuários. ${e.toString()}');
     }
-
-    return super.get(request, id);
-  }
-   */
-
-  /*
-  @override
-  Response getAll(Request request) {
-    int idPayload = service<AuthService>().extractUserIdFromRequest(request);
-    User user = service<UserService>().getById(idPayload)!;
-
-    if (!user.manager) {
-      return Response.forbidden('Você não tem permissão para acessar este recurso');
-    }
-
-    return super.getAll(request);
   }
 
-  @override
   Future<Response> update(Request request, String id) async {
-    int idPayload = service<AuthService>().extractUserIdFromRequest(request);
-    User user = service<UserService>().getById(idPayload)!;
+    try {
+      if (!isUserManager(request)) {
+        return Response.forbidden('Você não tem permissão para acessar este recurso');
+      }
 
-    if (idPayload != int.parse(id) || !user.manager) {
-      return Response.forbidden('Você não tem permissão para acessar este recurso');
+      final parameters = await request.body.asJson;
+      User? entity = service<UserService>().getById(int.parse(id));
+
+      if (entity == null) {
+        return Response.notFound('registro não encontrado');
+      }
+
+      bool banned = parameters['banned'] == "true";
+
+      entity.banned = banned;
+
+      try {
+        service<UserService>().update(entity);
+      } catch (e) {
+        return Response.badRequest(body: 'Erro ao atualizar. Erro: ${e.toString()}');
+      }
+
+      return Response.ok('Atualizado com sucesso');
+    } catch (e) {
+      return Response.internalServerError(body: 'Erro ao atualizar usuário. ${e.toString()}');
     }
-
-    return super.update(request, id);
   }
 
-  @override
   Future<Response> delete(Request request, String id) async {
-    int idPayload = service<AuthService>().extractUserIdFromRequest(request);
-    User user = service<UserService>().getById(idPayload)!;
+    try {
+      User user = getUserFromRequest(request);
 
-    if (idPayload != int.parse(id) || !user.manager) {
-      return Response.forbidden('Você não tem permissão para acessar este recurso');
+      if (user.id != int.parse(id) && !user.manager) {
+        return Response.forbidden('Você não tem permissão para acessar este recurso');
+      }
+
+      User? entity = service<UserService>().getById(int.parse(id));
+
+      if (entity == null) {
+        return Response.notFound('registro não encontrado');
+      }
+
+      service<UserService>().delete(entity);
+
+      return Response.ok('Deletado com sucesso');
+    } catch (e) {
+      return Response.internalServerError(body: 'Erro ao deletar usuário. ${e.toString()}');
     }
-
-    return super.delete(request, id);
   }
-
-   */
-
-  Middleware onlyManagerMiddleware() => (Handler innerHandler) {
-        return (Request request) async {
-          int idPayload = service<AuthService>().extractUserIdFromRequest(request);
-          User user = service<UserService>().getById(idPayload)!;
-
-          if (!user.manager) {
-            return Response.forbidden('Você não tem permissão para acessar este recurso');
-          }
-
-          return innerHandler(request);
-        };
-      };
 }
