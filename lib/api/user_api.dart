@@ -1,7 +1,7 @@
+import 'package:arcade_api/boostrap/service_register.dart';
+import 'package:arcade_api/models/user.dart';
+import 'package:arcade_api/service/models/user_service.dart';
 import 'package:shelf_plus/shelf_plus.dart';
-import '../boostrap/service_register.dart';
-import '../models/user.dart';
-import '../service/user_service.dart';
 import 'generic/request_handler.dart';
 
 class UserApi extends RequestHandler<User> {

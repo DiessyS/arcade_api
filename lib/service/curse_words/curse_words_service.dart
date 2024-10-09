@@ -6,14 +6,14 @@ class CurseWordService {
   List<String> _badWords = [];
 
   CurseWordService() {
-    Uint8List bytes = base64.decode(curses);
-    String badWords = utf8.decode(bytes);
-    Map jsonBadWords = json.decode(badWords);
+    final Uint8List bytes = base64.decode(curses);
+    final String badWords = utf8.decode(bytes);
+    final Map jsonBadWords = json.decode(badWords);
     _badWords = jsonBadWords['badwords'].cast<String>();
   }
 
   bool containsCurseWord(String text) {
-    String filteredText = _removeAnySeparators(text);
+    final String filteredText = _removeAnySeparators(text);
     List<String> words = filteredText.split(' ');
 
     words = words.map((word) => _replaceRepeatedChars(word)).toList();
@@ -41,8 +41,8 @@ class CurseWordService {
   }
 
   String _replaceRepeatedChars(String input) {
-    RegExp regExp = RegExp(r'(.)\1+');
-    String result = input.replaceAllMapped(regExp, (Match match) {
+    final RegExp regExp = RegExp(r'(.)\1+');
+    final String result = input.replaceAllMapped(regExp, (Match match) {
       return match.group(1)!;
     });
     return result;

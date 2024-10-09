@@ -1,11 +1,11 @@
+import 'package:arcade_api/boostrap/service_register.dart';
 import 'package:arcade_api/enums/event_type.dart';
+import 'package:arcade_api/models/event.dart';
+import 'package:arcade_api/models/user.dart';
 import 'package:arcade_api/service/curse_words/curse_words_service.dart';
-import 'package:arcade_api/service/user_service.dart';
+import 'package:arcade_api/service/models/event_service.dart';
+import 'package:arcade_api/service/models/user_service.dart';
 import 'package:shelf_plus/shelf_plus.dart';
-import '../boostrap/service_register.dart';
-import '../models/event.dart';
-import '../models/user.dart';
-import '../service/event_service.dart';
 import 'generic/request_handler.dart';
 
 class EventApi extends RequestHandler<Event> {
@@ -22,8 +22,8 @@ class EventApi extends RequestHandler<Event> {
     try {
       final parameters = await request.body.asJson;
 
-      Event event = Event.fromJson(parameters);
-      User user = getUserFromRequest(request);
+      final Event event = Event.fromJson(parameters);
+      final User user = getUserFromRequest(request);
 
       if (user.banned) {
         return Response.forbidden('O acesso do usuario ${user.identifier} foi bloqueado.');
@@ -33,7 +33,7 @@ class EventApi extends RequestHandler<Event> {
         return Response.forbidden('Você não tem permissão para acessar este recurso.');
       }
 
-      if (service<CurseWordService>().containsCurseWord('${event.name} ${event.description}')) {
+      if (!user.manager && service<CurseWordService>().containsCurseWord('${event.identifier} ${event.reference}')) {
         service<UserService>().banUser(user);
         return Response.forbidden(
           'O evento não pode ser cadastrado pois contém palavras que podem ser ofensivas.',
@@ -57,9 +57,8 @@ class EventApi extends RequestHandler<Event> {
 
   Future<Response> delete(Request request, String id) async {
     try {
-      User user = getUserFromRequest(request);
-
-      Event? entity = service<EventService>().getById(int.parse(id));
+      final User user = getUserFromRequest(request);
+      final Event? entity = service<EventService>().getById(int.parse(id));
 
       if (entity == null) {
         return Response.notFound('registro não encontrado.');
@@ -79,8 +78,8 @@ class EventApi extends RequestHandler<Event> {
 
   getByEventType(Request request, String type) async {
     try {
-      List<Event> events = await service<EventService>().getByEventType(EventType.fromString(type));
-      events = service<EventService>().filterTempEvents(events);
+      final EventType eventType = EventType.fromString(type);
+      List<Event> events = await service<EventService>().getByEventType(eventType);
       return events;
     } catch (e) {
       return Response.internalServerError(body: 'Erro ao buscar eventos. ${e.toString()}');

@@ -1,7 +1,7 @@
 import 'package:arcade_api/objectbox.g.dart';
 
-import '../models/user.dart';
-import 'generic/generic_service.dart';
+import '../../models/user.dart';
+import '../generic/generic_service.dart';
 
 class UserService extends GenericService<User> {
   UserService(super.repository);

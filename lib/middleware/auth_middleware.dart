@@ -9,6 +9,7 @@ Middleware authMiddleware() => (Handler innerHandler) {
         {'path': RegExp('login'), 'method': 'POST'},
         {'path': RegExp('user'), 'method': 'POST'},
         {'path': RegExp('event'), 'method': 'GET'},
+        {'path': RegExp('find'), 'method': 'GET'},
         {'path': RegExp('event/type/(w+)\$'), 'method': 'GET'},
       ];
 
@@ -19,14 +20,12 @@ Middleware authMiddleware() => (Handler innerHandler) {
           }
         }
 
-        final authorization = request.headers['Authorization'];
+        final String? authorization = request.headers['Authorization'];
 
         if (authorization == null || !service<AuthService>().isTokenValid(authorization)) {
           return Response.forbidden('Você não tem permissão para acessar este recurso.');
         }
 
-        final response = await innerHandler(request);
-
-        return response;
+        return await innerHandler(request);
       };
     };

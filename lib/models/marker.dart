@@ -1,3 +1,4 @@
+import 'package:latlong2/latlong.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
@@ -10,6 +11,15 @@ class Marker {
   double altitude = 0.0;
 
   Marker();
+
+  Marker.fromLatLng(LatLng latLng) {
+    latitude = latLng.latitude;
+    longitude = latLng.longitude;
+  }
+
+  LatLng toLatLng() {
+    return LatLng(latitude, longitude);
+  }
 
   @override
   String toString() {

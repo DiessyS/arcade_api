@@ -4,7 +4,7 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.3.2
+  sdk: ^3.5.0
 
 dependencies:
   objectbox: ^2.5.1
@@ -17,6 +17,11 @@ dependencies:
   get_it: ^7.7.0
   dart_jsonwebtoken: ^2.14.0
   shelf_cors_headers: ^0.1.5
+  dijkstra: ^0.0.4
+  hashlib: ^1.21.0
+  latlong2: ^0.9.1
+  sector: ^0.4.0
+  uuid: ^4.5.1
 
 dev_dependencies:
   lints: ^3.0.0

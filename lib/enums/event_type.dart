@@ -2,6 +2,7 @@ enum EventType {
   initial,
   place,
   temp,
+  path,
   limit;
 
   @override
@@ -13,6 +14,8 @@ enum EventType {
         return 'place';
       case EventType.temp:
         return 'temp';
+      case EventType.path:
+        return 'path';
       case EventType.limit:
         return 'limit';
       default:
@@ -28,6 +31,8 @@ enum EventType {
         return EventType.place;
       case 'temp':
         return EventType.temp;
+      case 'path':
+        return EventType.path;
       case 'limit':
         return EventType.limit;
       default:
@@ -38,6 +43,7 @@ enum EventType {
   static bool managerOnlyEvents(String typeOfEvent) {
     return typeOfEvent == EventType.limit.toString() ||
         typeOfEvent == EventType.place.toString() ||
+        typeOfEvent == EventType.path.toString() ||
         typeOfEvent == EventType.initial.toString();
   }
 

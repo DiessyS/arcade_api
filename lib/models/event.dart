@@ -1,3 +1,5 @@
+import 'package:hashlib/hashlib.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:objectbox/objectbox.dart';
 
 import '../enums/event_type.dart';
@@ -9,11 +11,11 @@ class Event {
   @Id()
   int id = 0;
 
-  String name = "";
-  String description = '';
+  String identifier = "";
+  String reference = "";
   String eventType = EventType.place.toString();
 
-  final marker = ToOne<Marker>();
+  late final marker = ToOne<Marker>();
   final createdBy = ToOne<User>();
 
   @Property(type: PropertyType.date)
@@ -21,16 +23,26 @@ class Event {
 
   Event();
 
+  int getLatLongIdentifier() {
+    final String latitude = marker.target?.latitude.toStringAsFixed(5) ?? '';
+    final String longitude = marker.target?.longitude.toStringAsFixed(5) ?? '';
+    return crc64code('$latitude $longitude');
+  }
+
+  LatLng asLatLng() {
+    return (marker.target?.toLatLng())!;
+  }
+
   @override
   String toString() {
-    return 'Event{id: $id, name: $name, description: $description, eventType: $eventType}';
+    return 'Event{id: $id, identifier: $identifier, description: $reference, eventType: $eventType}';
   }
 
   toJson() {
     return {
       'id': id,
-      'name': name,
-      'description': description,
+      'identifier': identifier,
+      'reference': reference,
       'eventType': eventType,
       'marker': marker.target?.toJson(),
       'createdBy': createdBy.target?.toJson(),
@@ -39,8 +51,8 @@ class Event {
   }
 
   Event.fromJson(Map<String, dynamic> map) {
-    name = map['name'];
-    description = map['description'];
+    identifier = map['identifier'];
+    reference = map['reference'];
     eventType = map['eventType'];
     marker.target = Marker.fromJson(map['marker']);
   }

@@ -1,7 +1,7 @@
 import 'package:arcade_api/boostrap/service_register.dart';
 import 'package:arcade_api/models/user.dart';
 import 'package:arcade_api/service/auth_service.dart';
-import 'package:arcade_api/service/user_service.dart';
+import 'package:arcade_api/service/models/user_service.dart';
 import 'package:shelf_plus/shelf_plus.dart';
 
 class RequestHandler<T> {

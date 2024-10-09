@@ -1,8 +1,8 @@
 import 'package:arcade_api/enums/event_type.dart';
 import 'package:arcade_api/objectbox.g.dart';
 
-import '../models/event.dart';
-import 'generic/generic_service.dart';
+import '../../models/event.dart';
+import '../generic/generic_service.dart';
 
 class EventService extends GenericService<Event> {
   EventService(super.repository);
