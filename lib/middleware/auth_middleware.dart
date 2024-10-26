@@ -9,7 +9,7 @@ Middleware authMiddleware() => (Handler innerHandler) {
         {'path': RegExp('login'), 'method': 'POST'},
         {'path': RegExp('user'), 'method': 'POST'},
         {'path': RegExp('event'), 'method': 'GET'},
-        {'path': RegExp('find'), 'method': 'GET'},
+        {'path': RegExp('find'), 'method': 'POST'},
         {'path': RegExp('event/type/(w+)\$'), 'method': 'GET'},
       ];
 

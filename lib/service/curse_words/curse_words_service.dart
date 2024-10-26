@@ -1,39 +1,61 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:typed_data';
-import 'curses.dart';
 
+//https://github.com/Kuyoku-san/Badwords
 class CurseWordService {
   List<String> _badWords = [];
 
   CurseWordService() {
-    final Uint8List bytes = base64.decode(curses);
+    _loadCurseWords();
+  }
+
+  _loadCurseWords() {
+    final File file = File('assets/badwords.b64');
+    final Uint8List bytes = base64.decode(file.readAsStringSync());
     final String badWords = utf8.decode(bytes);
     final Map jsonBadWords = json.decode(badWords);
-    _badWords = jsonBadWords['badwords'].cast<String>();
+    _badWords = jsonBadWords['words'].cast<String>();
   }
 
   bool containsCurseWord(String text) {
-    final String filteredText = _removeAnySeparators(text);
-    List<String> words = filteredText.split(' ');
+    text = _normalizeText(text);
+    return _haveCurseWord(text) || _haveCurseWordInLeetSpeak(text);
+  }
 
-    words = words.map((word) => _replaceRepeatedChars(word)).toList();
+  String _normalizeText(String text) {
+    text = _removeAnySeparators(text);
+    text = _replaceRepeatedChars(text);
+    return text.toLowerCase();
+  }
 
-    for (String word in words) {
-      if (_isCurseWord(word)) {
+  bool _haveCurseWord(String text) {
+    for (String badWord in _badWords) {
+      if (text.contains(badWord.toLowerCase())) {
         return true;
       }
     }
-
     return false;
   }
 
-  bool _isCurseWord(String word) {
+  bool _haveCurseWordInLeetSpeak(String text) {
     for (String badWord in _badWords) {
-      if (word.toLowerCase().contains(badWord.toLowerCase())) {
+      final String badWordLeet = _turnIntoLeetSpeak(badWord);
+      if (text.contains(badWordLeet.toLowerCase())) {
         return true;
       }
     }
     return false;
+  }
+
+  String _turnIntoLeetSpeak(String word) {
+    return word
+        .replaceAll('a', '4')
+        .replaceAll('e', '3')
+        .replaceAll('i', '1')
+        .replaceAll('o', '0')
+        .replaceAll('s', '5')
+        .replaceAll('t', '7');
   }
 
   String _removeAnySeparators(String text) {
@@ -42,9 +64,8 @@ class CurseWordService {
 
   String _replaceRepeatedChars(String input) {
     final RegExp regExp = RegExp(r'(.)\1+');
-    final String result = input.replaceAllMapped(regExp, (Match match) {
+    return input.replaceAllMapped(regExp, (Match match) {
       return match.group(1)!;
     });
-    return result;
   }
 }

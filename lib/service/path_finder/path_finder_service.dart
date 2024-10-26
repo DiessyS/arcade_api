@@ -60,6 +60,7 @@ class PathFinderService {
   List<PathDTO> _connectPointsOfInterest(List<PathDTO> paths, Event origin, Event destination) {
     // ---------------------------------------------------------------
     // connect origin with the closest path
+
     final PathDTO closetPathOrigin = _closestPathToLocation(paths, origin.asLatLng());
     final LatLng divergencePointStart = geoMath.createDivergence(
       closetPathOrigin.begin.asLatLng(),
@@ -79,6 +80,7 @@ class PathFinderService {
 
     // ---------------------------------------------------------------
     // connect origin with the closest path
+    //todo: caminho mais perto as vezes não é o menor, talvez seja necessário verificar a distância
     final PathDTO closetPathDestination = _closestPathToLocation(paths, destination.asLatLng());
 
     LatLng divergencePoint = geoMath.createDivergence(
@@ -165,65 +167,4 @@ class PathFinderService {
 
     return closestPath!;
   }
-
-  // double haversineDistance(LatLng p1, LatLng p2) {
-  //   const R = 6371000;
-  //   final double dLat = (p2.latitude - p1.latitude) * pi / 180.0;
-  //   final double dLon = (p2.longitude - p1.longitude) * pi / 180.0;
-  //
-  //   final double lat1 = p1.latitude * pi / 180.0;
-  //   final double lat2 = p2.latitude * pi / 180.0;
-  //
-  //   final double a = sin(dLat / 2) * sin(dLat / 2) + cos(lat1) * cos(lat2) * sin(dLon / 2) * sin(dLon / 2);
-  //   final double c = 2 * atan2(sqrt(a), sqrt(1 - a));
-  //
-  //   return R * c;
-  // }
-
-  // double distanceToSegment(LatLng target, LatLng begin, LatLng end) {
-  //   final double x1 = begin.latitude, y1 = begin.longitude;
-  //   final double x2 = end.latitude, y2 = end.longitude;
-  //   final double x0 = target.latitude, y0 = target.longitude;
-  //
-  //   double t = ((x0 - x1) * (x2 - x1) + (y0 - y1) * (y2 - y1)) / ((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-  //
-  //   if (t < 0) t = 0;
-  //   if (t > 1) t = 1;
-  //
-  //   final double closestX = x1 + t * (x2 - x1);
-  //   final double closestY = y1 + t * (y2 - y1);
-  //
-  //   final LatLng closestPoint = LatLng(closestX, closestY);
-  //
-  //   return haversineDistance(target, closestPoint);
-  // }
-
-  // PathDTO createDivergence(PathDTO path, LatLng location) {
-  //   double vx = path.end.asLatLng().latitude - path.begin.asLatLng().latitude;
-  //   double vy = path.end.asLatLng().longitude - path.begin.asLatLng().longitude;
-  //
-  //   double wx = location.latitude - path.begin.asLatLng().latitude;
-  //   double wy = location.longitude - path.begin.asLatLng().longitude;
-  //
-  //   double dotV = vx * vx + vy * vy;
-  //   double dotW = wx * vx + wy * vy;
-  //
-  //   double t = dotW / dotV;
-  //
-  //   t = max(0, min(1, t));
-  //
-  //   double closestX = path.begin.asLatLng().latitude + t * vx;
-  //   double closestY = path.begin.asLatLng().longitude + t * vy;
-  //
-  //   LatLng closestPoint = LatLng(closestX, closestY);
-  //
-  //   PathDTO divergence = PathDTO(
-  //     begin: path.begin,
-  //     end: Event()..marker.target = m.Marker.fromLatLng(closestPoint),
-  //   );
-  //
-  //   divergence.id = path.id;
-  //
-  //   return divergence;
-  // }
 }
